@@ -5,7 +5,7 @@ const Whiteboard = () => {
     return (
         <div style={{
             position: 'fixed', inset: 0, fontFamily: 'sans-serif' }}>
-            <Tldraw  />
+            <Tldraw persistenceKey='white-data' />
         </div>
 
     )
