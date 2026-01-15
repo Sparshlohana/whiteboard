@@ -4,12 +4,13 @@ import { Tldraw } from '@tldraw/tldraw'
 import '@tldraw/tldraw/tldraw.css'
 import { LiveblocksProvider, RoomProvider, ClientSideSuspense } from '@liveblocks/react/suspense'
 import { useYjsStore } from '@/hooks/useYjsStore'
+import Loader from './Loader'
 
 function WhiteboardInner() {
     const store = useYjsStore()
 
     if (!store) {
-        return <div className="absolute inset-0 flex items-center justify-center">Loading...</div>
+        return <Loader />
     }
 
     return (
@@ -25,7 +26,7 @@ export default function CollaborativeWhiteboard() {
     return (
         <LiveblocksProvider authEndpoint="/api/liveblocks-auth">
             <RoomProvider id={roomId} initialPresence={{}}>
-                <ClientSideSuspense fallback={<div>Loading room...</div>}>
+                <ClientSideSuspense fallback={<Loader />}>
                     {() => <WhiteboardInner />}
                 </ClientSideSuspense>
             </RoomProvider>
